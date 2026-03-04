@@ -5,10 +5,10 @@ in verifying that this package's contents are trustworthy.
 The packaged Windows archive is available for independent download via the Releases page on
 Green Tunnel's GitHub repository. A download link for the packaged version is included at the
 following URL:
-https://github.com/SadeghHayeri/GreenTunnel/releases/tag/v2.0.0
+https://github.com/SadeghHayeri/GreenTunnel/releases/tag/v2.0.1
 
 For convenience, this is a direct URL to the relevant asset:
-https://github.com/SadeghHayeri/GreenTunnel/releases/download/v2.0.2/green-tunnel-windows.zip
+https://github.com/SadeghHayeri/GreenTunnel/releases/download/v2.0.1/green-tunnel-windows.zip
 
 The following PowerShell command will print a calculated SHA256 hash:
 
@@ -19,4 +19,4 @@ distributed with the package. Both hash values should be identical. A matching h
 confirm that no corruption or tampering has occurred during this package's generation process.
 
 For reference, the following SHA256 hash was calculated during the package's automated creation:
-53032491EF23C68C3F0223D7550B6F846A967BB7F40058B3AFC01D06490B1D59
+AC38DF6EACD7DCE73F352DB100FC46EAFA62EAF1B9248064CC5B1A3D178D69B7

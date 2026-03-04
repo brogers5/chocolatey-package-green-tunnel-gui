@@ -3,18 +3,18 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>green-tunnel-gui</id>
-    <version>2.0.0</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-green-tunnel-gui/tree/v2.0.0</packageSourceUrl>
+    <version>2.0.1</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-green-tunnel-gui/tree/v2.0.1</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Green Tunnel (GUI)</title>
     <authors>Sadegh Hayeri</authors>
     <projectUrl>https://github.com/SadeghHayeri/GreenTunnel</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-green-tunnel-gui@67d7a8d1b514780a1fe57127867a8567d1efbaba/green-tunnel-gui.png</iconUrl>
     <copyright>Copyright © 2026 Sadegh Hayeri</copyright>
-    <licenseUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.0/LICENSE</licenseUrl>
+    <licenseUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.1/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/SadeghHayeri/GreenTunnel/tree/v2.0.0</projectSourceUrl>
-    <docsUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.0/README.md</docsUrl>
+    <projectSourceUrl>https://github.com/SadeghHayeri/GreenTunnel/tree/v2.0.1</projectSourceUrl>
+    <docsUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.1/README.md</docsUrl>
     <mailingListUrl>https://github.com/SadeghHayeri/GreenTunnel/discussions</mailingListUrl>
     <bugTrackerUrl>https://github.com/SadeghHayeri/GreenTunnel/issues</bugTrackerUrl>
     <tags>green-tunnel-gui green-tunnel green tunnel gui proxy dpi deep-packet-inspection http https sni server-name-indication dns isp filter filtering firewall bypass electron cross-platform foss</tags>
