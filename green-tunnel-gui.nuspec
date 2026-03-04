@@ -3,30 +3,26 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2015/06/nuspec.xsd">
   <metadata>
     <id>green-tunnel-gui</id>
-    <version>1.8.3</version>
-    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-green-tunnel-gui/tree/v1.8.3</packageSourceUrl>
+    <version>2.0.0</version>
+    <packageSourceUrl>https://github.com/brogers5/chocolatey-package-green-tunnel-gui/tree/v2.0.0</packageSourceUrl>
     <owners>sublym0nal</owners>
     <title>Green Tunnel (GUI)</title>
     <authors>Sadegh Hayeri</authors>
     <projectUrl>https://github.com/SadeghHayeri/GreenTunnel</projectUrl>
     <iconUrl>https://cdn.jsdelivr.net/gh/brogers5/chocolatey-package-green-tunnel-gui@67d7a8d1b514780a1fe57127867a8567d1efbaba/green-tunnel-gui.png</iconUrl>
-    <copyright>Copyright © 2022 Sadegh Hayeri</copyright>
-    <licenseUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v1.8.3/LICENSE</licenseUrl>
+    <copyright>Copyright © 2026 Sadegh Hayeri</copyright>
+    <licenseUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.0/LICENSE</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <projectSourceUrl>https://github.com/SadeghHayeri/GreenTunnel/tree/v1.8.3</projectSourceUrl>
-    <docsUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v1.8.3/README.md</docsUrl>
+    <projectSourceUrl>https://github.com/SadeghHayeri/GreenTunnel/tree/v2.0.0</projectSourceUrl>
+    <docsUrl>https://github.com/SadeghHayeri/GreenTunnel/blob/v2.0.0/README.md</docsUrl>
     <mailingListUrl>https://github.com/SadeghHayeri/GreenTunnel/discussions</mailingListUrl>
     <bugTrackerUrl>https://github.com/SadeghHayeri/GreenTunnel/issues</bugTrackerUrl>
     <tags>green-tunnel-gui green-tunnel green tunnel gui proxy dpi deep-packet-inspection http https sni server-name-indication dns isp filter filtering firewall bypass electron cross-platform foss</tags>
     <summary>An anti-censorship utility designed to bypass the DPI system that is put in place by various ISPs to block access to certain websites.</summary>
     <description><![CDATA[
 ---
-### [choco://green-tunnel-gui](choco://green-tunnel-gui)
-To use choco:// protocol URLs, install [(unofficial) choco:// Protocol support](https://chocolatey.org/packages/choco-protocol-support)
 
----
-
-### Looking for the CLI version? Check out the [green-tunnel-cli](https://community.chocolatey.org/packages/green-tunnel-cli) package!
+### Looking for the CLI version? Check out the [green-tunnel-cli](https://community.chocolatey.org/packages/green-tunnel-cli) package
 
 ---
 
