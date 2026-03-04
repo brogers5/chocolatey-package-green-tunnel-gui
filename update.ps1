@@ -8,26 +8,26 @@ $softwareRepo = 'SadeghHayeri/GreenTunnel'
 
 function global:au_GetLatest {
     $version = Get-LatestStableVersion
-    $script:softwareTag = "v$version"
 
     return @{
-        Url32 = Get-SoftwareUri
-        Version = $version #This may change if building a package fix version
+        SoftwareVersion = $version
+        Url32           = Get-SoftwareUri
+        Version         = $version #This may change if building a package fix version
     }
 }
 
-function global:au_BeforeUpdate ($Package)  {
+function global:au_BeforeUpdate ($Package) {
     Get-RemoteFiles -Purge -NoSuffix -Algorithm sha256
 
     $templateFilePath = Join-Path -Path $toolsPath -ChildPath 'VERIFICATION.txt.template'
     $verificationFilePath = Join-Path -Path $toolsPath -ChildPath 'VERIFICATION.txt'
-    Copy-Item -Path $templateFilePath  -Destination $verificationFilePath -Force
+    Copy-Item -Path $templateFilePath -Destination $verificationFilePath -Force
 
-    Set-DescriptionFromReadme -Package $Package -ReadmePath ".\DESCRIPTION.md"
+    Set-DescriptionFromReadme -Package $Package -ReadmePath '.\DESCRIPTION.md'
 }
 
-function global:au_AfterUpdate ($Package)  {
-    $licenseUri = "https://raw.githubusercontent.com/$($softwareRepo)/$softwareTag/LICENSE"
+function global:au_AfterUpdate ($Package) {
+    $licenseUri = "https://raw.githubusercontent.com/$($softwareRepo)/v$($Latest.SoftwareVersion)/LICENSE"
     $licenseContents = Invoke-WebRequest -Uri $licenseUri -UseBasicParsing
 
     $licensePath = Join-Path -Path $toolsPath -ChildPath 'LICENSE.txt'
@@ -37,16 +37,16 @@ function global:au_AfterUpdate ($Package)  {
 function global:au_SearchReplace {
     @{
         "$($Latest.PackageName).nuspec" = @{
-            "<packageSourceUrl>[^<]*</packageSourceUrl>" = "<packageSourceUrl>https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)</packageSourceUrl>"
-            "<licenseUrl>[^<]*</licenseUrl>" = "<licenseUrl>https://github.com/$($softwareRepo)/blob/$($softwareTag)/LICENSE</licenseUrl>"
-            "<projectSourceUrl>[^<]*</projectSourceUrl>" = "<projectSourceUrl>https://github.com/$($softwareRepo)/tree/$($softwareTag)</projectSourceUrl>"
-            "<copyright>[^<]*</copyright>" = "<copyright>Copyright © $(Get-Date -Format yyyy) Sadegh Hayeri</copyright>"
+            '(<packageSourceUrl>)[^<]*(</packageSourceUrl>)' = "`$1https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)`$2"
+            '(<licenseUrl>)[^<]*(</licenseUrl>)'             = "`$1https://github.com/$($softwareRepo)/blob/v$($Latest.SoftwareVersion)/LICENSE`$2"
+            '(<projectSourceUrl>)[^<]*(</projectSourceUrl>)' = "`$1https://github.com/$($softwareRepo)/tree/v$($Latest.SoftwareVersion)`$2"
+            '(<copyright>)[^<]*(</copyright>)'               = "`$1Copyright © $(Get-Date -Format yyyy) Sadegh Hayeri`$2"
         }
-        'tools\VERIFICATION.txt' = @{
-            '%checksumValue%' = "$($Latest.Checksum32)"
-            '%checksumType%' = "$($Latest.ChecksumType32.ToUpper())"
-            '%tagReleaseUrl%' = "https://github.com/$($softwareRepo)/releases/tag/$($softwareTag)"
-            '%archiveUrl%' = "$($Latest.Url32)"
+        'tools\VERIFICATION.txt'        = @{
+            '%checksumValue%'   = "$($Latest.Checksum32)"
+            '%checksumType%'    = "$($Latest.ChecksumType32.ToUpper())"
+            '%tagReleaseUrl%'   = "https://github.com/$($softwareRepo)/releases/tag/v$($Latest.SoftwareVersion)"
+            '%archiveUrl%'      = "$($Latest.Url32)"
             '%archiveFileName%' = "$($Latest.FileName32)"
         }
     }
