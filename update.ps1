@@ -40,6 +40,7 @@ function global:au_SearchReplace {
             '(<packageSourceUrl>)[^<]*(</packageSourceUrl>)' = "`$1https://github.com/brogers5/chocolatey-package-$($Latest.PackageName)/tree/v$($Latest.Version)`$2"
             '(<licenseUrl>)[^<]*(</licenseUrl>)'             = "`$1https://github.com/$($softwareRepo)/blob/v$($Latest.SoftwareVersion)/LICENSE`$2"
             '(<projectSourceUrl>)[^<]*(</projectSourceUrl>)' = "`$1https://github.com/$($softwareRepo)/tree/v$($Latest.SoftwareVersion)`$2"
+            '(<docsUrl>)[^<]*(</docsUrl>)'                   = "`$1https://github.com/SadeghHayeri/GreenTunnel/blob/v$($Latest.SoftwareVersion)/README.md`$2"
             '(<copyright>)[^<]*(</copyright>)'               = "`$1Copyright © $(Get-Date -Format yyyy) Sadegh Hayeri`$2"
         }
         'tools\VERIFICATION.txt'        = @{
