@@ -1,6 +1,6 @@
 ﻿Import-Module PowerShellForGitHub
 
-$installerFileNameRegex = 'green-tunnel-windows.zip$'
+$installerFileNameRegex = 'GreenTunnel\.Setup\.\d\.\d\.\d\.exe$'
 $owner = 'SadeghHayeri'
 $repository = 'GreenTunnel'
 
