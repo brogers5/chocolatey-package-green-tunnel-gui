@@ -1,45 +1,31 @@
 ﻿$ErrorActionPreference = 'Stop'
-
 $toolsDir = "$(Split-Path -Parent $MyInvocation.MyCommand.Definition)"
-$zipArchivePath = Join-Path -Path $toolsDir -ChildPath 'green-tunnel-windows.zip'
+. $toolsDir\helpers.ps1
 
-$outerPackageArgs = @{
-  fileFullPath = $zipArchivePath
-  destination  = $toolsDir
-  packageName  = $env:ChocolateyPackageName
+$legacySquirrelInstallation = Get-LegacySquirrelInstallation
+if ($null -ne $legacySquirrelInstallation -and ((Get-OSArchitectureWidth -Compare 64) -and ($env:chocolateyForceX86 -ne $true))) {
+  Write-Warning "A legacy version of Green Tunnel (v$($legacySquirrelInstallation.DisplayVersion)) was detected.
+      Green Tunnel has since migrated to a separate installer implementation that does not clean up legacy installations.
+      To prevent possible issues with installation coexistence, please manually uninstall this version at your earliest convenience."
 }
-Get-ChocolateyUnzip @outerPackageArgs
 
-#Clean up ZIP archive post-extraction to prevent unnecessary disk bloat
-Remove-Item -Path $zipArchivePath -Force -ErrorAction SilentlyContinue
+$installerFileName = 'GreenTunnel.Setup.3.0.5.exe'
+$filePath = Join-Path -Path $toolsDir -ChildPath $installerFileName
 
-$selfExtractingArchivePath = Join-Path -Path $toolsDir -ChildPath 'green-tunnel-installer.exe'
-
-#The self-extracting archive terminates after spawning a detached child process.
-#Emulate this to enable proper process tracking.
-$tempDirectory = Join-Path -Path $env:LOCALAPPDATA -ChildPath 'SquirrelTemp'
-$innerPackageArgs = @{
-  fileFullPath = $selfExtractingArchivePath
-  destination  = $tempDirectory
-  packageName  = $env:ChocolateyPackageName
-}
-Get-ChocolateyUnzip @innerPackageArgs
-
-$installerPath = Join-Path -Path $tempDirectory -ChildPath 'Update.exe'
-$installerArgs = @{
+$packageArgs = @{
   packageName    = $env:ChocolateyPackageName
   fileType       = 'EXE'
-  file           = $installerPath
-  softwareName   = 'green-tunnel'
-  silentArgs     = '--install . -s'
+  file64         = $filePath
+  softwareName   = 'GreenTunnel *'
+  silentArgs     = '/ALLUSERS /S'
   validExitCodes = @(0)
 }
+Install-ChocolateyInstallPackage @packageArgs
 
-Install-ChocolateyInstallPackage @installerArgs
+#Remove installer binary post-install to prevent disk bloat
+Remove-Item $filePath -Force -ErrorAction SilentlyContinue
 
-#Clean up extracted contents post-install to prevent unnecessary disk bloat
-Get-ChildItem -Path $tempDirectory -Exclude 'SquirrelSetup.log' -Recurse | Remove-Item -Force -ErrorAction SilentlyContinue
-if (Test-Path -Path $selfExtractingArchivePath) {
-  #If the installer binary removal fails, try to prevent shim creation
-  Set-Content -Path "$selfExtractingArchivePath.ignore" -Value $null -ErrorAction SilentlyContinue
+#If installer binary removal fails for some reason, prevent an installer shim from being generated
+if (Test-Path -Path $filePath) {
+  Set-Content -Path "$filePath.ignore" -Value $null -ErrorAction SilentlyContinue
 }

@@ -36,7 +36,8 @@ Green Tunnel is an anti-censorship utility, implemented as a local proxy server,
   <files>
     <file src="tools\chocolateyinstall.ps1" target="tools" />
     <file src="tools\chocolateyuninstall.ps1" target="tools" />
-    <file src="tools\green-tunnel-windows.zip" target="tools" />
+    <file src="tools\helpers.ps1" target="tools" />
+    <file src="tools\GreenTunnel.Setup.*.exe" target="tools" />
     <file src="tools\LICENSE.txt" target="tools" />
     <file src="tools\VERIFICATION.txt" target="tools" />
   </files>

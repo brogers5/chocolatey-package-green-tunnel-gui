@@ -21,7 +21,7 @@ choco install green-tunnel-gui -s .
 
 [Install Chocolatey](https://chocolatey.org/install), the [Chocolatey Automatic Package Updater Module](https://github.com/majkinetor/au), and the [PowerShellForGitHub PowerShell Module](https://github.com/microsoft/PowerShellForGitHub), then clone this repository.
 
-Once cloned, simply run `build.ps1`. The script will download the Green Tunnel installer ZIP archive from the official distribution point (as the ZIP archive is intentionally untracked to avoid bloating the repository), then packs everything together.
+Once cloned, simply run `build.ps1`. The script will download the Green Tunnel installer binary from the official distribution point (as the binary is intentionally untracked to avoid bloating the repository), then packs everything together.
 
 A successful build will create `green-tunnel-gui.x.y.z.nupkg`, where `x.y.z` should be the Nuspec's `version` value at build time.
 

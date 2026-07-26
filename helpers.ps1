@@ -25,10 +25,10 @@ function Get-SoftwareUri {
     }
     $releaseAssets = Get-GitHubReleaseAsset -OwnerName $owner -RepositoryName $repository -Release $release.ID
 
-    $windowsArchiveAsset = $null
+    $windowsBinaryAsset = $null
     foreach ($asset in $releaseAssets) {
         if ($asset.name -match $installerFileNameRegex) {
-            $windowsArchiveAsset = $asset
+            $windowsBinaryAsset = $asset
             break
         }
         else {
@@ -36,9 +36,9 @@ function Get-SoftwareUri {
         }
     }
 
-    if ($null -eq $windowsArchiveAsset) {
-        throw 'Cannot find published Windows archive asset!'
+    if ($null -eq $windowsBinaryAsset) {
+        throw 'Cannot find published Windows binary asset!'
     }
 
-    return $windowsArchiveAsset.browser_download_url
+    return $windowsBinaryAsset.browser_download_url
 }

@@ -11,7 +11,7 @@ function global:au_GetLatest {
 
     return @{
         SoftwareVersion = $version
-        Url32           = Get-SoftwareUri
+        Url64           = Get-SoftwareUri
         Version         = $version #This may change if building a package fix version
     }
 }
@@ -44,11 +44,14 @@ function global:au_SearchReplace {
             '(<copyright>)[^<]*(</copyright>)'               = "`$1Copyright © $(Get-Date -Format yyyy) Sadegh Hayeri`$2"
         }
         'tools\VERIFICATION.txt'        = @{
-            '%checksumValue%'   = "$($Latest.Checksum32)"
-            '%checksumType%'    = "$($Latest.ChecksumType32.ToUpper())"
-            '%tagReleaseUrl%'   = "https://github.com/$($softwareRepo)/releases/tag/v$($Latest.SoftwareVersion)"
-            '%archiveUrl%'      = "$($Latest.Url32)"
-            '%archiveFileName%' = "$($Latest.FileName32)"
+            '%checksumValue%'  = "$($Latest.Checksum64)"
+            '%checksumType%'   = "$($Latest.ChecksumType64.ToUpper())"
+            '%tagReleaseUrl%'  = "https://github.com/$($softwareRepo)/releases/tag/v$($Latest.SoftwareVersion)"
+            '%binaryUrl%'      = "$($Latest.Url64)"
+            '%binaryFileName%' = "$($Latest.FileName64)"
+        }
+        'tools\chocolateyinstall.ps1'   = @{
+            "(^[$]installerFileName\s*=\s*)('.*')" = "`$1'$($Latest.FileName64)'"
         }
     }
 }
